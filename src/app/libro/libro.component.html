@@ -1,0 +1,15 @@
+<button *ngIf="!(datiService.addeditFormLibroVisibile$ | async)" mat-raised-button color="primary"
+    (click)="addFormLibro()">Add Guida/Manuale</button>
+<div *ngIf="(datiService.addeditFormLibroVisibile$ | async); else lista">
+
+    <app-matcard-libro (eventoAdd)="add($event)" [libro]="libro"></app-matcard-libro>
+</div>
+<ng-template #lista>
+    <div class="lista">
+        <hr>
+
+        <app-matlist-libri [libri$]="libri$" (eventoEdit)="editFormLibro($event)" (eventoDelete)="delete($event)">
+        </app-matlist-libri>
+        <hr>
+    </div>
+</ng-template>

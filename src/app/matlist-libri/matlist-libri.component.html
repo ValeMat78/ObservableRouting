@@ -1,0 +1,17 @@
+<mat-list-item *ngFor="let item of libri$ | async; let i=index ">
+    <span *ngIf="item.tipo=='guida'; else manuale" style="color: red; " class="titoloautore">
+        <span mat-line><mat-icon mat-list-icon>computer</mat-icon> {{item.titolo}} -{{item.autore}} - {{item.tipo}} -
+            {{item.id}}</span>
+    </span>
+    <ng-template #manuale>
+        <span style="color: blue;" class="titoloautore">
+            <span mat-line><mat-icon mat-list-icon>book</mat-icon> {{item.titolo}} -{{item.autore}} - {{item.tipo}} -
+                {{item.id}}</span>
+        </span>
+    </ng-template>
+
+    <button mat-icon-button color="accent" (click)="edit(item)" class="azioni"><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button (click)="delete(item.id)" class="azioni">
+        <mat-icon color="warn">delete</mat-icon>
+    </button>
+</mat-list-item>
